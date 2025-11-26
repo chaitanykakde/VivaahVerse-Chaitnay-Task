@@ -3,7 +3,9 @@
 A **Premium Fintech-styled** Expense Tracker application built with **Jetpack Compose** (Android) and **Node.js/Express** (Backend). This app offers a modern, dark-themed UI ("Midnight Emerald") to manage your personal finances efficiently.
 
 ## 📱 Download App
-**[Download Latest APK (Debug)](ExpenseTracker.apk)**
+**[Download Latest APK (v1.0)](https://github.com/chaitanykakde/VivaahVerse-Chaitnay-Task/releases/download/v1.0.0/ExpenseTracker.apk)**
+
+*If the above link doesn't work, check the [Releases Page](https://github.com/chaitanykakde/VivaahVerse-Chaitnay-Task/releases).*
 
 ---
 
