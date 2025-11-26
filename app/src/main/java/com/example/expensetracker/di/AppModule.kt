@@ -26,7 +26,7 @@ object AppModule {
     // Replace with your machine's IP for emulator (e.g., 10.0.2.2) or Render URL
     // For Emulator: http://10.0.2.2:3000/
     // For Physical Device: Use your computer's IP address (run 'ifconfig' or 'ipconfig')
-    private const val BASE_URL = "http://192.168.21.163:3000/" 
+    private const val BASE_URL = "https://vivaahverse-chaitnay-task.onrender.com/" 
 
     @Provides
     @Singleton

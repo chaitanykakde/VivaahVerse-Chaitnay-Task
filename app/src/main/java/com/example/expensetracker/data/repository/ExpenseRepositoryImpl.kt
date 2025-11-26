@@ -10,6 +10,9 @@ import com.example.expensetracker.data.remote.dto.LoginRequest
 import com.example.expensetracker.data.remote.dto.SignupRequest
 import com.example.expensetracker.domain.model.Expense
 import com.example.expensetracker.domain.repository.ExpenseRepository
+import org.json.JSONObject
+import retrofit2.HttpException
+import java.io.IOException
 import javax.inject.Inject
 
 class ExpenseRepositoryImpl @Inject constructor(
@@ -19,13 +22,37 @@ class ExpenseRepositoryImpl @Inject constructor(
 
     private val TOKEN_KEY = stringPreferencesKey("auth_token")
 
+    private fun getErrorMessage(e: Exception): String {
+        return when (e) {
+            is HttpException -> {
+                try {
+                    val errorBody = e.response()?.errorBody()?.string()
+                    if (errorBody != null) {
+                        val jsonObject = JSONObject(errorBody)
+                        if (jsonObject.has("error")) {
+                            jsonObject.getString("error")
+                        } else {
+                            "Something went wrong"
+                        }
+                    } else {
+                        "An unknown error occurred"
+                    }
+                } catch (e: Exception) {
+                    "Error processing server response"
+                }
+            }
+            is IOException -> "No internet connection. Please check your network."
+            else -> e.message ?: "Unknown error"
+        }
+    }
+
     override suspend fun login(request: LoginRequest): Result<AuthResponse> {
         return try {
             val response = api.login(request)
             saveToken(response.token)
             Result.success(response)
         } catch (e: Exception) {
-            Result.failure(e)
+            Result.failure(Exception(getErrorMessage(e)))
         }
     }
 
@@ -35,7 +62,7 @@ class ExpenseRepositoryImpl @Inject constructor(
             saveToken(response.token)
             Result.success(response)
         } catch (e: Exception) {
-            Result.failure(e)
+            Result.failure(Exception(getErrorMessage(e)))
         }
     }
 
@@ -43,7 +70,7 @@ class ExpenseRepositoryImpl @Inject constructor(
         return try {
             Result.success(api.getExpenses(category, date))
         } catch (e: Exception) {
-            Result.failure(e)
+            Result.failure(Exception(getErrorMessage(e)))
         }
     }
 
@@ -51,7 +78,7 @@ class ExpenseRepositoryImpl @Inject constructor(
         return try {
             Result.success(api.getExpenseById(id))
         } catch (e: Exception) {
-            Result.failure(e)
+            Result.failure(Exception(getErrorMessage(e)))
         }
     }
 
@@ -59,7 +86,7 @@ class ExpenseRepositoryImpl @Inject constructor(
         return try {
             Result.success(api.addExpense(expense))
         } catch (e: Exception) {
-            Result.failure(e)
+            Result.failure(Exception(getErrorMessage(e)))
         }
     }
 
@@ -67,7 +94,7 @@ class ExpenseRepositoryImpl @Inject constructor(
         return try {
             Result.success(api.updateExpense(id, expense))
         } catch (e: Exception) {
-            Result.failure(e)
+            Result.failure(Exception(getErrorMessage(e)))
         }
     }
 
@@ -76,7 +103,7 @@ class ExpenseRepositoryImpl @Inject constructor(
             api.deleteExpense(id)
             Result.success(Unit)
         } catch (e: Exception) {
-            Result.failure(e)
+            Result.failure(Exception(getErrorMessage(e)))
         }
     }
 

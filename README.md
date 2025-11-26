@@ -1,45 +1,81 @@
-# Expense Tracker Solution
+# VivaahVerse Expense Tracker
 
-## Structure
-- `backend/`: Node.js + Express API (Firestore)
-- `android_app/`: Jetpack Compose Android App (MVVM, Hilt, Retrofit)
+A **Premium Fintech-styled** Expense Tracker application built with **Jetpack Compose** (Android) and **Node.js/Express** (Backend). This app offers a modern, dark-themed UI ("Midnight Emerald") to manage your personal finances efficiently.
 
-## Backend Setup
-1. Navigate to `backend/`.
-2. Run `npm install`.
-3. **Firebase Setup**:
-   - Go to Firebase Console -> Project Settings -> Service Accounts.
-   - Generate a new private key.
-   - Save the file as `serviceAccountKey.json` inside `backend/`.
-4. Run `npm start` (or `npm run dev`).
-5. The API will run on `http://localhost:3000`.
+## 📱 Download App
+**[Download Latest APK (Debug)](ExpenseTracker.apk)**
 
-### Render Deployment
-1. Push this repo to GitHub.
-2. Create a new Web Service on Render.
-3. Root Directory: `backend`.
-4. Build Command: `npm install`.
-5. Start Command: `node index.js`.
-6. **Environment Variables**:
-   - `FIREBASE_SERVICE_ACCOUNT`: Paste the content of your `serviceAccountKey.json` here (minified JSON).
-   - `JWT_SECRET`: Set a secure secret.
+---
 
-## Android App Setup
-1. Open `android_app/` in Android Studio.
-2. Sync Gradle.
-3. **Config**:
-   - Open `di/AppModule.kt`.
-   - Update `BASE_URL` to your backend URL.
-     - Emulator: `http://10.0.2.2:3000/`
-     - Physical Device: `http://<YOUR_PC_IP>:3000/`
-     - Render: `https://your-app.onrender.com/`
-4. Run the app.
+## ✨ Features
 
-## Features
-- Cyberpunk/Hacker Theme (Black & Neon Green).
-- JWT Auth (Signup/Login).
-- Expense Dashboard with Donut Chart.
-- Add/Delete Expenses.
-- Category Filter.
+*   **Authentication**: Secure Login & Registration (JWT-based) with persistent session.
+*   **Dashboard**: Glassmorphism-styled balance card, income/expense breakdown, and recent transactions.
+*   **Transactions**: Add Income or Expenses with categories and dates.
+*   **Analytics**: Visual breakdown of expenses by category using a dynamic Donut Chart.
+*   **Premium UI**: "Midnight Emerald" Dark Theme with fully rounded shapes and smooth animations.
+*   **Error Handling**: User-friendly feedback for login/registration errors (e.g., "User already exists").
 
-# VivaahVerse-Chaitnay-Task
+---
+
+## 📸 Screenshots
+
+| Login Screen | Registration Screen |
+|:---:|:---:|
+| <img src="app/src/main/res/drawable/loginpage.jpeg" width="250"/> | <img src="app/src/main/res/drawable/registartionscreen.jpeg" width="250"/> |
+
+| Dashboard | Add Transaction |
+|:---:|:---:|
+| <img src="app/src/main/res/drawable/homescreen.jpeg" width="250"/> | <img src="app/src/main/res/drawable/add_transaction_screen.jpeg" width="250"/> |
+
+| Transaction List | Expense Breakdown |
+|:---:|:---:|
+| <img src="app/src/main/res/drawable/edit_transaction_screen.jpeg" width="250"/> | <img src="app/src/main/res/drawable/expense_breakdown_screen.jpeg" width="250"/> |
+
+| Logout Dialog |
+|:---:|
+| <img src="app/src/main/res/drawable/logoutdialogscreen.jpeg" width="250"/> |
+
+---
+
+## 🛠 Tech Stack
+
+**Android (Frontend)**
+*   **Language**: Kotlin
+*   **UI Framework**: Jetpack Compose (Material 3)
+*   **Architecture**: MVVM (Model-View-ViewModel)
+*   **DI**: Hilt (Dagger)
+*   **Networking**: Retrofit + OkHttp
+*   **Local Storage**: DataStore Preferences
+*   **Async**: Coroutines & Flow
+
+**Backend**
+*   **Runtime**: Node.js
+*   **Framework**: Express.js
+*   **Database**: Firebase Realtime Database
+*   **Deployment**: Render
+*   **Auth**: JWT (JSON Web Tokens)
+
+---
+
+## 🚀 Setup Instructions
+
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/chaitanykakde/VivaahVerse-Chaitnay-Task.git
+    ```
+2.  **Open in Android Studio**: Select the `VivaahVerseChaitany` folder.
+3.  **Sync Gradle**: Allow dependencies to download.
+4.  **Run**: Connect a device or start an emulator and click "Run".
+
+**Backend Setup (Optional)**
+If you want to run the backend locally:
+1.  Navigate to `backend/` folder.
+2.  Run `npm install`.
+3.  Run `npm run dev`.
+4.  Update `BASE_URL` in `AppModule.kt` to `http://10.0.2.2:3000/`.
+
+---
+
+## 👤 Author
+**Chaitany Kakde**
